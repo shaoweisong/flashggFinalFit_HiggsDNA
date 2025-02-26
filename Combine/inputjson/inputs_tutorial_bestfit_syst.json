@@ -1,0 +1,26 @@
+{
+    "plots":{
+        "pois":"r",
+        "fits":"bestfit:syst:r",
+        "points":"1",
+        "fit_opts":"--saveWorkspace --setParameterRanges r=0,2 --saveSpecifiedNuis all --freezeParameters MH"
+    },
+    "MX500_MH125":{
+        "pois":"r",
+        "fits":"bestfit:syst:r",
+        "points":"1",
+        "fit_opts":"--saveWorkspace --setParameterRanges r=0,2 --saveSpecifiedNuis all --freezeParameters MH"
+    },
+    "MX1000_MH125":{
+        "pois":"r",
+        "fits":"bestfit:syst:r",
+        "points":"1",
+        "fit_opts":"--saveWorkspace --setParameterRanges r=0,2 --saveSpecifiedNuis all --freezeParameters MH"
+    },
+    "MX3000_MH125":{
+        "pois":"r",
+        "fits":"bestfit:syst:r",
+        "points":"1",
+        "fit_opts":"--saveWorkspace --setParameterRanges r=0,2 --saveSpecifiedNuis all --freezeParameters MH"
+    }
+}

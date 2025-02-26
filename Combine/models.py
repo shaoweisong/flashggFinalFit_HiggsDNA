@@ -4,6 +4,25 @@ models = {
   "mu_ggH_VBF":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 --PO \"map=.*/ggH.*:r_ggH[1,0,3]\" \
 --PO \"map=.*/qqH.*:r_VBF[1,0,5]\"",
+ "bkgOnly":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+  --PO \"map=.*/gghhwwgg.*:r[0,0,1]\" \
+  --PO \"map=.*/gghhbbgg.*:r[0,0,1]\" \
+  --PO \"map=.*/gghhttgg.*:r[0,0,1]\" \
+  --PO \"map=.*/gghhzzgg.*:r[0,0,1]\" \
+  --PO \"map=.*/gghhVH*.*:r[0,0,1]\"  \
+  --PO \"map=.*/gghhTTH*.*:r[0,0,1]\"  \
+  --PO \"map=.*/gghhGGH*.*:r[0,0,1]\"  \
+  --PO \"map=.*/gghhVBF*.*:r[0,0,1]\"",
+
+ "plots":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+  --PO \"map=.*/gghhwwgg.*:r[1,0,10]\" \
+  --PO \"map=.*/gghhbbgg.*:r[1,0,10]\" \
+  --PO \"map=.*/gghhttgg.*:r[1,0,10]\" \
+  --PO \"map=.*/gghhzzgg.*:r[1,0,10]\" \
+  --PO \"map=.*/gghhVH*.*:r_singleHiggs[1,0,2]\" \
+  --PO \"map=.*/gghhTTH*.*:r_singleHiggs[1,0,2]\" \
+  --PO \"map=.*/gghhGGH*.*:r_singleHiggs[1,0,2]\" \
+  --PO \"map=.*/gghhVBF*.*:r_singleHiggs[1,0,2]\"",
 
   "mu":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 --PO \"map=.*/ggH.*:r_ggH[1,0,2]\" \
