@@ -78,7 +78,7 @@ def extractBandProperties(data,category,bidx):
   props['down2sigma'] = np.percentile(data['%s_%g'%(c,bidx)].values,50*(1+math.erf(-2./math.sqrt(2))))
   return props
 
-def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduceRange=None,hC=None):
+def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduceRange=None,hC=None,MX=" "):
   translateCats = {} if options.translateCats is None else LoadTranslations(options.translateCats)
   translatePOIs = {} if options.translatePOIs is None else LoadTranslations(options.translatePOIs)
   blindingRegion = [float(options.blindingRegion.split(",")[0]),float(options.blindingRegion.split(",")[1])]
@@ -238,19 +238,42 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
   #   leg.AddEntry(gr_1sig,"#pm1 #sigma","F")
   #   leg.AddEntry(gr_2sig,"#pm2 #sigma","F")
   leg.Draw("Same")
-
+  # categories
+  if "16pre" in cat:
+    lumi_year="19.51 fb^{-1} (13 TeV)"
+  elif "16post" in cat:
+    lumi_year="16.81 fb^{-1} (13 TeV)"
+  elif "17" in cat:
+    lumi_year="41.48 fb^{-1} (13 TeV)"
+  elif "18" in cat:
+    lumi_year="59.83 fb^{-1} (13 TeV)"
+  if "cat34FHhighpurity" in cat:
+    cat="cat0"
+  if "cat34FHlowpurity" in cat:
+    cat="cat1"
+  if "cat34SLhighpurity" in cat:
+    cat="cat2"
+  if "cat34SLlowpurity" in cat:
+    cat="cat3"
+  if "cat12highpurity" in cat:
+    cat="cat4"
+  if "cat12lowpurity" in cat:
+    cat="cat5"
   # Add TLatex to plot
   lat0 = ROOT.TLatex()
   lat0.SetTextFont(42)
   lat0.SetTextAlign(11)
   lat0.SetNDC()
   lat0.SetTextSize(0.06)
-  #lat0.DrawLatex(0.12,0.92,"#bf{CMS} #it{Preliminary}")
-  lat0.DrawLatex(0.12,0.92,"#bf{CMS}")
-  lat0.DrawLatex(0.6,0.92,"138 fb^{-1} (13.6 TeV)")
-  lat0.DrawLatex(0.6,0.8,"#scale[0.6]{%s}"%Translate(cat,translateCats))
+  lat0.DrawLatex(0.12,0.92,"#bf{CMS} #it{Preliminary}")
+  # lat0.DrawLatex(0.12,0.92,"#bf{CMS}")
+  # lat0.DrawLatex(0.6,0.92,"138 fb^{-1} (13 TeV)")
+  lat0.DrawLatex(0.6,0.92,lumi_year)
+  lat0.DrawLatex(0.6,0.8,"#scale[0.7]{%s}"%Translate(cat,translateCats))
   #lat0.DrawLatex(0.15,0.83,"#scale[0.75]{H#rightarrow#gamma#gamma}")
-  lat0.DrawLatex(0.15,0.83,"#scale[0.75]{X #rightarrow HH #rightarrow WW#gamma#gamma, m_{H} = 125.38 GeV}")
+  # lat0.DrawLatex(0.15,0.83,"#scale[0.75]{X ("+MX+" GeV) #rightarrow HH #rightarrow WW#gamma#gamma, m_{H} = 125.38 GeV}")
+  print("MX: ",MX)
+  lat0.DrawLatex(0.15, 0.83, "#scale[0.75]{X (" + MX + " GeV) #rightarrow HH #rightarrow WW#gamma#gamma}")
   if "PseudoToy" in options.inputWSFile:
     lat0.DrawLatex(0.15,0.76,"#scale[0.75]{Pseudo data}")
 
@@ -282,6 +305,9 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     hBr.SetLineStyle(2)
     hBr.SetLineColor(2)
     hBr.Draw("Hist same c")
+    hBr.SetLineColor(4)
+    hBr.Draw("Hist same c")
+    
   else:
     hSr.SetLineWidth(3)
     hSr.SetLineColor(9)
